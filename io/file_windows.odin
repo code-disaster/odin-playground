@@ -46,7 +46,10 @@ find_files :: proc(path: string, callback: proc(file: File) -> bool) -> Error {
         if !ignore {
 
             file := File {
-                path = strings.concatenate({search_path, file_name}, context.temp_allocator),
+                path = strings.concatenate(
+                    {search_path, file_name},
+                    context.temp_allocator
+                ),
             };
 
             file.size = u64(ffd.file_size_high) << 32 + u64(ffd.file_size_low);
